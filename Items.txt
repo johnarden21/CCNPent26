@@ -1,0 +1,34 @@
+C1sc0123
+
+
+3YchzADR
+
+FortiGate-60E - default pass
+admin
+pass
+
+GGithub Ref
+https://github.com/ggenergg/ccnpent26
+
+for VSC (Python)
+https://github.com/rivancorp/pythonautomations
+
+in CMD:
+cd desktop
+mkdir J.Alger <---- name
+https://github.com/rivancorp/pythonautomations
+
+
+Save mac address For IP-Phones
+COREbaba-21#sho mac address-table | inc Fa0/5
+   1    dcf7.19d8.f4fc    DYNAMIC     Fa0/5
+ 100    dcf7.19d8.f4fc    DYNAMIC     Fa0/5
+COREbaba-21#sho mac address-table | inc Fa0/7
+   1    dcf7.19d9.d39e    DYNAMIC     Fa0/7
+ 100    dcf7.19d9.d39e    DYNAMIC     Fa0/7
+COREbaba-21#
+
+
+
+ 100    dcf7.19d8.f4fc    DYNAMIC     Fa0/5
+ 100    dcf7.19d9.d39e    DYNAMIC     Fa0/7

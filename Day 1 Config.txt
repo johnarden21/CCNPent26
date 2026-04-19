@@ -1,0 +1,184 @@
+
+
+@D1
+!to A1
+conf t
+ int range e0/1-2
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 10 mode active
+  channel-protocol lacp
+
+!to A2
+conf t
+ int range e0/0,e0/3
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 20 mode active
+  channel-protocol lacp
+
+!to D2
+conf t
+ int range e1/2,e1/3
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 30 mode active
+  channel-protocol lacp
+
+===================================
+
+D2 Switch
+
+!to D1
+conf t
+ int range e1/2,e1/3
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 30 mode active
+  channel-protocol lacp
+
+!to A1
+conf t
+ int range e0/1-2
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 15 mode active
+  channel-protocol lacp
+
+!to A2
+conf t
+ int range e0/0,e0/3
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 25 mode active
+  channel-protocol lacp
+
+===================================
+
+
+A1 -> D1
+
+conf t
+ int range e0/1,e0/2
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 10 mode active
+  channel-protocol lacp
+
+A1 -> D2
+
+conf t
+ int range e0/3,e1/0
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 15 mode active
+  channel-protocol lacp
+
+
+===================================
+
+
+A2 -> D1
+
+conf t
+ int range e0/1,e0/2
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 20 mode active
+  channel-protocol lacp
+
+A2 -> D2
+
+conf t
+ int range e0/0,e0/3
+  switchport trunk encap dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 1-99
+  channel-group 25 mode active
+  channel-protocol lacp
+
+
+
+
+
+
+
+
+
+
+
+
+=================================== DHCP D1
+
+
+ip dhcp pool VLAN10
+   network 10.2.1.0 255.255.255.0
+   default-router 10.2.1.1
+   domain-name VLAN10
+
+ip dhcp pool VLAN20
+   network 10.2.2.0 255.255.255.0
+   default-router 10.2.2.1
+   domain-name VLAN20
+
+ip dhcp pool VLAN100
+   network 192.168.1.0 255.255.255.0
+   default-router 192.168.1.129
+   domain-name VLAN100
+
+
+
+=================================== DHCP D2
+
+ip dhcp pool VLAN10
+   network 10.2.1.0 255.255.255.0
+   default-router 10.2.1.1
+   domain-name VLAN10
+
+ip dhcp pool VLAN20
+   network 10.2.2.0 255.255.255.0
+   default-router 10.2.2.1
+   domain-name VLAN20
+
+ip dhcp pool VLAN100
+   network 192.168.1.0 255.255.255.0
+   default-router 192.168.1.129
+   domain-name VLAN100
+
+=================================== A1
+ conf t
+  interface e0/0
+   switchport mode access
+   switchport access vlan 10
+   
+ =================================== A2
+ conf t
+  interface e1/0
+   switchport mode access
+   switchport access vlan 20
+   
+=================================== P1
+ 
+ conf t
+ int e0/0 
+ ip add dhcp
+ no shut
+ end
+ 
+=================================== P2
+ 
+ conf t
+ int e1/0 
+ ip add dhcp
+ no shut
+ end
+ 
