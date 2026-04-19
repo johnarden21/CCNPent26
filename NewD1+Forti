@@ -190,6 +190,7 @@ config t
      exec-timeout 0 0
     line vty 0 14
       password pass
+	  transport input all
       login
       exec-timeout 0 0
    Int Gi 0/0/0
@@ -289,9 +290,11 @@ end
 !Check/Debug SIP Phone Configurations
 !It must show the sip mac addresses for the phones to have numbers
 show voice register tftp-bind
-
 !Register Phones Re-Create profile ( Line 294-297 Paste on CME )
- 
+ conf t
+voice register global
+create profile sync syncinfo
+end
 
 !@incoming and outgoing call ( Line 300-304 Paste on CME )
 conf t
@@ -375,8 +378,6 @@ conf t
   session target ipv4:10.92.100.8
   codec g711ULAW
  end
-
-
 
 
 !OSPF ROUTING ( Line 384-388 Paste on CME )
